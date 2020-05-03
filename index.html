@@ -1,0 +1,83 @@
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    {{ message }}
+</div>
+
+<!--
+    선언적으로 렌더링 하는 시스템.
+-->
+
+<div id="app-2">
+    <span v-bind:title="message">
+        터틀좌
+    </span>
+</div>
+
+<!-- 
+    v-bind 속성은 디렉티브라고 합니다. 
+    Vue에서 제공하는 특수 속성임을 나타내는 v- 접두어가 붙어 있습니다.
+    app2.message = '새로운 메시지'라고 입력하면 HTML(이 경우에 title 속성)이 업데이트되었음을 다시 한번 확인할 수 있습니다.
+-->
+
+<div id="app-3">
+    <p v-if="seen">이제 나를 볼 수 있어요.</p>
+</div>
+
+<!--
+    app3.seen = false를 입력하면 메시지가 사라집니다.
+    Vue element가 Vue에 삽입/업데이트/제거될 때 자동으로 트랜지션 효과를 적용할 수 있는 강력한 전환 효과 시스템을 제공합니다.
+-->
+
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+</div>
+
+<!-- 
+    app4.todos.push({ text: 'New item' })을 입력하면 새로운 항목이 동적으로 추가됩니다.
+-->
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">메시지 뒤집기</button>
+</div>
+
+<!--
+    사용자가 앱과 상호 작용할 수 있게 하기 위해 우리는 
+    v-on 디렉티브를 사용하여 Vue 인스턴스에서 메소드를 호출하는 이벤트 리스너를 추가 할 수 있습니다 :
+-->
+
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+
+<!--
+    DOM을 건드리지 않고 앱의 상태만을 업데이트 합니다.
+-->
+
+<div id="app-7">
+    <ol>
+        <!--
+            이제 각 todo-item에 todo 객체를 제공합니다.
+            화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다.
+            또한 각 구성 요소에 "키"를 제공해야 합니다.
+        -->
+        <todo-item
+            v-for="item in groceryList"
+            v-bind:todo="item"
+            v-bind:key="item.id"
+        ></todo-item>
+    </ol>
+</div>
+
+<button onclick="location.href = './instance.html'">
+    Vue 인스턴스 보기
+</button>
+
+<script src="./index.js"></script>

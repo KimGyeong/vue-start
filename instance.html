@@ -1,0 +1,12 @@
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ foo }}</p>
+    <!-- obj.foo는 더 이상 변하지 않습니다. -->
+    <button v-on:click="foo = 'baz'">체인지</button>
+</div>
+
+<button onclick="location.href='./templates.html'">템플릿 문법 보기</button>
+
+<script src="instance.js"></script>

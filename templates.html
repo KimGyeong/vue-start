@@ -1,0 +1,85 @@
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!--
+    v-once 디렉티브를 사용하면 값이 변경되지 않아요.
+-->
+<div id="string">
+    <span>메시지: {{ msg }}</span>
+    <br>
+    <span v-once>다시는 변경하지 않습니다: {{ msg }}</span>
+</div>
+
+<!--
+    실제 html을 출력하려면 v-html 디렉티브를 사용해야 합니다.
+-->
+
+<div id="primitive">
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+
+<!--
+    Mustaches는 HTML 속성에서 사용할 수 없습니다.
+    대신 v-bind 디렉티브를 사용하세요.
+-->
+<div>
+    <div v-bind:id="dynamicId"></div>
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+</div>
+
+<!--
+    Vue.js는 모든 데이터 바인딩 내에서 JavaScript 표현식의 모든 기능을 지원합니다.
+
+-->
+<div id="use">
+    {{ number + 1 }}
+    <br>
+    {{ ok ? 'YES' : 'NO'}}
+    <br>
+    {{ message.split('').reverse().join('')}}
+
+    <div v-bind:id="'list-' + id"></div>
+</div>
+
+<!--
+    일부 디렉티브는 콜론으로 표시되는 "전달인자"를 사용할 수 있습니다.
+    예를 들어, v-bind 디렉티브는 반응적으로 HTML 속성을 갱신하는데 사용됩니다.
+    여기서 href는 전달인자로, 엘리먼트의 href 속성을 표현식 url의 값에 바인드하는 v-bind 디렉티브에게 알려줍니다.
+-->
+
+<div id="param">
+    <a v-bind:href="url">깃헙으로 가봅시다</a>
+    <br>
+    <a v-on:click="doSomething"> ... </a>
+</div>
+
+<!--
+    동적 전달인자는 '동적 전달인자의 형식 제약'의 부분에서 후술되는 바와 같이,
+    조금의 제약이 있습니다.
+    attributeName은 Javascript형식으로 동적 변환되어,
+    그 변환결과가 전달인자의 최종적인 값으로 사용됩니다.
+    예를 들어, Vue 인스턴스에 'href'라는 값을 가진 attributeName 데이터 속성을 가진 경우,
+    이 바인딩은 v-bind:href와 동일합니다.
+-->
+<!-- 
+    자료가 없어서 포기 
+    <div id="dynamic">
+        <a v-bind:[attributeName]="url"> 왜 다 점인거지</a>
+    </div>
+-->
+
+<!--
+    수식어는 점으로 표시되는 특수 접미사
+    디렉티브를 특별한 방법으로 바인딩 해야 함을 나타냅니다.
+    예를 들어, .prevent 수식어는 트리거된 이벤트에서 
+    event.preventDefault() 를 호출하도록 v-on 디렉티브에게 알려줍니다.
+-->
+
+<form v-on:submit.prevent="onSubmit">
+    <input type="text" />
+</form>
+
+<button onclick="location.href='./compute.html'">computed와 watch 보기</button>
+
+<script src="templates.js"></script>

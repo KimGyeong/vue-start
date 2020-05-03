@@ -1,0 +1,50 @@
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- axios CDN -->
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<!--
+    탬플릿 내에 표현식을 넣으면 편리합니다.
+    하지만 간단한 연산일 때만 이용하는 것이 좋습니다.
+    너무 많은 연산을 템플릿 안에서 하면 코드가 비대해지고 유지보수가 어렵습니다.
+    복잡한 로직이라면 반드시 computed 속성을 사용해야 합니다.
+-->
+<div id="example">
+    {{ message.split('').reverse().join('') }}
+
+    <p>원본 메시지 : "{{ message }}"</p>
+    <p>역순으로 표시한 메시지: "{{ reversedMessage }}"</p>
+</div>
+
+<!--
+    표현식에서 메소드를 호출하여 같은 결과를 얻을 수도 있습니다.
+    computed 속성 대신 메소드와 같은 함수를 정의할 수도 있습니다.
+    computed 속성은 종속 대상을 따라 저장(캐싱)된다는 것입니다.
+-->
+
+<div id="compute">
+    <p>뒤집힌 메시지: "{{ reversedMessage() }}"</p>
+</div>
+
+<!--
+    Vue는 Vue 인스턴스의 데이터 변경을 관찰하고 이에 반응하는
+    비교적 일반적인 watch 속성을 제공합니다.
+    명령적인 watch 콜백보다 computed 속성을 사용하는 것이 더 좋습니다.
+-->
+
+<div id="demo">{{ fullName }}</div>
+
+<!--
+    데이터 변경에 대한 응답으로 비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에
+    watch 옵션을 사용하는 것이 가장 유용합니다.
+-->
+
+<div id="watch-example">
+    <p>
+        yes/no 질문을 물어보세요.
+        <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+
+<script src="compute.js"></script>
