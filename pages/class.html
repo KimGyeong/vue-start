@@ -1,0 +1,89 @@
+<!--
+    클래스를 동적으로 토글하기 위해 v-bind:class 에 객체를 전달할 수 있습니다.
+    active 클래스의 존재 여부가 데이터 속성 isActive의 참 속성에 의해 결정되는 것을 의미합니다.
+-->
+
+<div v-bind:class="{ active: isActive">클래스 동적 토글</div>
+
+<!--
+    객체에 필드가 더 있으면 여러 클래스를 토글할 수 있습니다.
+    또한 v-bind:class 디렉티브는 일반 class 속성과 공존할 수 있습니다.
+    <div class="static active"></div> 로 렌더링 됩니다.
+-->
+
+<div
+    class="static"
+    v-bind:class="{ active: isActive, 'text-danger': hasError }"
+>여러 클래스 토글</div>
+
+<!--
+    바인딩 된 객체는 인라인일 필요는 없습니다.
+-->
+
+<div
+    id="inlineBinding"
+    v-bind:class="classObject"
+>인라인 아닌데용</div>
+
+<!--
+    객체를 반환하는 계산된 속성에도 바인딩 할 수 있습니다.
+    일반적이며 강력한 패턴입니다.
+-->
+
+<div
+    id="calculated"
+    v-bind:class="classObject"
+>객체를 반환하는 계산된 속성에 바인딩</div>
+
+<!--
+    배열을 v-bind:class에 전달하여 클래스 목록을 지정할 수 있습니다.
+    <div id="arrayClass" class="active text-danger"></div> 로 바인딩 됩니다.
+-->
+
+<div 
+    id="arrayClass"
+    v-bind:class="[activeClass, errorClass]"
+>배열을 이용한 바인딩</div>
+
+<!--
+    목록에 있는 클래스를 조건부 토글하려면 삼항 연산자를 이용할 수 있습니다.
+    배열 구문 내에서 객체 구문을 사용할 수 있습니다.
+-->
+
+<div id="condition">
+    <div v-bind:class="[isActive ? activeClass: '', errorClass]">삼항 연산자를 이용한 토글</div>
+    <div v-bind:class="[{ active: isActive }, errorClass]">배열 구문 내에서 객체 구문 사용하기</div>
+</div>
+
+<!--
+    v-bind:style 객체 구문은 매우 직설적입니다.
+    스타일 객체에 직접 바인딩 하여 템플릿을 더 간결하게 할 수 있습니다.
+-->
+
+<div id="style">
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">스타일 넣기</div>
+    <div v-bind:style="styleObject">스타일 객체 바인딩 하기</div>
+</div>
+
+<!--
+    v-bind:style에 대한 배열 구문은 같은 스타일의 엘리먼트에 여러 개의 스타일 객체를 사용할 수 있게 합니다.
+-->
+
+<div id="arrStyle">
+    <div v-bind:style="[baseStyles, overridingStyles]">스타일 배열 객체 바인딩 하기</div>
+</div>
+
+<!--
+    스타일 속성에 접두사가 있는 여러 값을 배열로 전달할 수 있습니다.
+    브라우저가 지원하는 배열의 마지막 값만 렌더링합니다.
+-->
+
+<div id="head">
+    <div v-bind:style="{ display: ['-webkit-box', 'ms-flexbox', 'flex'] }">
+        접두사가 있는 여러 값을 배열로 전달
+    </div>
+</div>
+
+<!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../js/class.js"></script>
